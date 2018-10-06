@@ -78,8 +78,13 @@ const touchHandler = event => {
   }
 }
 
-document.addEventListener('touchstart', touchHandler)
-document.addEventListener('touchmove', touchHandler)
+if ('ontouchstart' in window) {
+  document.addEventListener('touchstart', touchHandler)
+  document.addEventListener('touchmove', touchHandler)
+  document.querySelector('.mobile.controls').style.display = 'block';
+} else {
+  document.querySelector('.desktop.controls').style.display = 'block';
+}
 
 setBackground({ element })
 step()
