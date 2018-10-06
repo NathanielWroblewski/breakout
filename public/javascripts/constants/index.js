@@ -16,6 +16,8 @@ export const PADDLE_WIDTH = 30
 
 export const LEFT_ARROW = 37
 export const RIGHT_ARROW = 39
+export const A = 65
+export const D = 68
 
 export const MOVEMENT = 5
 
@@ -24,3 +26,6 @@ export const BALL_RADIUS = 3
 
 export const SEARCH_THRESHOLD = CELL_HEIGHT * MAX_ROW + BALL_RADIUS + 2
 export const PADDLE_THRESHOLD = HEIGHT - 20 - PADDLE_HEIGHT - BALL_RADIUS - 2
+
+export const CELL_SCORE = 10
+export const BONUS_SCORE = 100

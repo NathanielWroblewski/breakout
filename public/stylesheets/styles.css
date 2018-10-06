@@ -46,6 +46,16 @@ a:hover {
   height: 500px;
 }
 
+.score {
+  padding-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: right;
+}
+
+.score .label {
+  color: #aaa;
+}
+
 .screen {
   height: 500px;
   width: 100%;
