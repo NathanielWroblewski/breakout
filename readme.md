@@ -3,7 +3,7 @@ Breakout
 
 Destroy all the bricks without dropping the ball
 
-![Screenshot](https://raw.githubusercontent.com/NathanielWroblewski/breakout/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/NathanielWroblewski/breakout/master/screen_shot.png)
 
 Running locally
 ---
