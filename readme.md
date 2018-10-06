@@ -18,9 +18,8 @@ $ open http://localhost:8000 && python -m SimpleHTTPServer
 
 TODO
 ---
-  - Make gifs m4a video
-  - Score counter
-  - Win conditions
+  - Refine brick reflection logic
+  - Increase ball angle
   - Special bricks:
     - bricks that require multiple touches
     - bricks that speed up the ball
