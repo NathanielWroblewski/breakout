@@ -13,6 +13,10 @@ class Score {
     this.score += BONUS_SCORE
   }
 
+  in (values) {
+    return values.includes(this.score)
+  }
+
   toJSON () {
     const { score } = this
 

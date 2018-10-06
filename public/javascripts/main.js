@@ -3,7 +3,9 @@ import Paddle from './models/paddle.js'
 import Cells from './models/cells.js'
 import Score from './models/score.js'
 import { setBackground, renderScreen } from './views/screen.js'
-import { LEFT_ARROW, RIGHT_ARROW, A, D, SEARCH_THRESHOLD, PADDLE_THRESHOLD } from './constants/index.js'
+import {
+  LEFT_ARROW, RIGHT_ARROW, A, D, SEARCH_THRESHOLD, PADDLE_THRESHOLD, CHECKPOINTS
+} from './constants/index.js'
 
 const { requestAnimationFrame } = window
 const element = document.querySelector('.game')
@@ -26,6 +28,10 @@ const step = () => {
       ball.contact(nearestCell)
       cells.remove(nearestCell)
       score.increment()
+
+      if (score.in(CHECKPOINTS)) {
+        ball.boost()
+      }
 
       if (cells.areDepleted()) {
         setBackground({ element })

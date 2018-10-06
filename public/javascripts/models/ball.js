@@ -1,6 +1,6 @@
 import Vector from './vector.js'
 import {
-  WIDTH, HEIGHT, MAX_ROW, CELL_HEIGHT, BALL_VELOCITY, BALL_RADIUS
+  WIDTH, HEIGHT, MAX_ROW, CELL_HEIGHT, BALL_VELOCITY, BALL_RADIUS, BALL_MAXSPEED
 } from '../constants/index.js'
 
 const randomPosition = () => {
@@ -69,8 +69,6 @@ class Ball {
     // }
   // }
 
-  // TODO: consider speeding up ball
-  // this.ball.speed += 10 * (1 - (this.ball.speed / this.ball.maxspeed)); // decay curve
   contact (object) {
     const { x, y } = this.position
     const center = object.center()
@@ -88,6 +86,28 @@ class Ball {
     ) {
       this.velocity = new Vector({ x: this.velocity.x, y: -this.velocity.y })
     }
+  }
+
+  boost () {
+    let x, y
+
+    if (this.velocity.x > 0) {
+      x = Math.min(this.velocity.x + 1, BALL_MAXSPEED)
+    }
+
+    if (this.velocity.y > 0) {
+      y = Math.min(this.velocity.y + 1, BALL_MAXSPEED)
+    }
+
+    if (this.velocity.x < 0) {
+      x = Math.max(this.velocity.x - 1, -BALL_MAXSPEED)
+    }
+
+    if (this.velocity.y < 0) {
+      y = Math.max(this.velocity.y - 1, -BALL_MAXSPEED)
+    }
+
+    this.velocity = new Vector({ x, y })
   }
 
   isDead () {
