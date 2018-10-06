@@ -46,5 +46,26 @@ document.addEventListener('keydown', ({ keyCode }) => {
   }
 }, false)
 
+const touchHandler = event => {
+  const { touches } = event
+  const { offsetLeft } = element.querySelector('canvas')
+  const { x, y } = paddle.center()
+
+  if (touches && touches[0].pageX - offsetLeft < x) {
+    event.preventDefault()
+
+    return paddle.left()
+  }
+
+  if (touches && touches[0].pageX - offsetLeft > x) {
+    event.preventDefault()
+
+    return paddle.right()
+  }
+}
+
+document.addEventListener('touchstart', touchHandler)
+document.addEventListener('touchmove', touchHandler)
+
 setBackground({ element })
 step()
