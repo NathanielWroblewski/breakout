@@ -1,5 +1,3 @@
-import { sort } from './index.js'
-
-export const medianIndex = (list, comparator) => (
-  Math.floor(sort(list, comparator).length / 2)
+export const medianIndex = list => (
+  Math.floor(list.length / 2)
 )

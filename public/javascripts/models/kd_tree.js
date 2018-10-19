@@ -1,6 +1,17 @@
 import { medianIndex } from '../utilities/splitting.js'
 import { squaredDistance } from '../utilities/distance.js'
-import { flatten } from '../utilities/index.js'
+import { flatten, sort } from '../utilities/index.js'
+
+const sortNodes = (nodes, axis, locate) => {
+  return sort(nodes, (node, neighbor) => {
+    const nodeLocation = locate(node)[axis]
+    const neighborLocation = locate(neighbor)[axis]
+
+    if (nodeLocation === neighborLocation) return 0
+    if (locate(node)[axis] < locate(neighbor)[axis]) return -1
+    return 1
+  })
+}
 
 class Node {
   constructor ({ element, locate, left, right, parent }) {
@@ -85,10 +96,11 @@ class Node {
 
     const k = locate(nodes[0]).length // dimensionality
     const axis = depth % k
+    const sorted = sortNodes(nodes, axis, locate)
     const medianIndex = split(nodes, node => locate(node)[axis])
-    const node = new Node({ element: nodes[medianIndex], parent, locate })
-    const leftBranch = nodes.slice(0, medianIndex)
-    const rightBranch = nodes.slice(medianIndex + 1)
+    const node = new Node({ element: sorted[medianIndex], parent, locate })
+    const leftBranch = sorted.slice(0, medianIndex)
+    const rightBranch = sorted.slice(medianIndex + 1)
 
     node.left = Node.from({ nodes: leftBranch, depth: depth + 1, split, locate, parent: node })
     node.right = Node.from({ nodes: rightBranch, depth: depth + 1, split, locate, parent: node })
